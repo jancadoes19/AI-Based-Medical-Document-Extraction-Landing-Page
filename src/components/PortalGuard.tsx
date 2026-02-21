@@ -1,19 +1,20 @@
-import React, { Component } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import React, { useEffect, Component } from 'react';
+import { useRouter, usePathname } from '../lib/compat';
 import { usePortalAuth } from '../hooks/usePortalAuth';
 interface PortalGuardProps {
   children: React.ReactNode;
 }
 export function PortalGuard({ children }: PortalGuardProps) {
   const { isAuthenticated } = usePortalAuth();
-  const location = useLocation();
+  const router = useRouter();
+  const pathname = usePathname();
+  useEffect(() => {
+    if (!isAuthenticated()) {
+      router.replace(`/portal?redirect=${encodeURIComponent(pathname)}`);
+    }
+  }, [isAuthenticated, pathname, router]);
   if (!isAuthenticated()) {
-    return (
-      <Navigate
-        to={`/portal?redirect=${encodeURIComponent(location.pathname)}`}
-        replace />);
-
-
+    return null; // Or a loading spinner
   }
   return <>{children}</>;
 }

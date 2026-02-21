@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, X, Settings } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link } from '../lib/compat';
 interface CookieBannerProps {
   isOpen: boolean;
   onClose: () => void;
@@ -141,14 +141,14 @@ export function CookieBanner({
                     {/* Policy links */}
                     <div className="flex gap-4 mb-5">
                       <Link
-                    to="/legal"
+                    href="/legal"
                     onClick={onClose}
                     className="text-[#063aa4] text-xs hover:underline flex items-center gap-1">
 
                         🔗 Cookie Policy
                       </Link>
                       <Link
-                    to="/legal"
+                    href="/legal"
                     onClick={onClose}
                     className="text-[#063aa4] text-xs hover:underline flex items-center gap-1">
 

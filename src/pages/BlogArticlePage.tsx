@@ -1,22 +1,28 @@
 import React from 'react';
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, useRouter } from '../lib/compat';
+import { Link } from '../lib/compat';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, User, Tag } from 'lucide-react';
 import { getArticleBySlug } from '../data/blogArticles';
 export function BlogArticlePage() {
-  const { slug } = useParams<{
-    slug: string;
-  }>();
+  const params = useParams();
+  const router = useRouter();
+  const slug = params?.slug as string;
   const article = slug ? getArticleBySlug(slug) : undefined;
   if (!article) {
-    return <Navigate to="/blog" replace />;
+    // In Next.js we might want to return notFound() or redirect
+    // For client-side transition:
+    if (typeof window !== 'undefined') {
+      router.replace('/blog');
+    }
+    return null;
   }
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-[#063aa4] selection:text-white">
       {/* Back to Blog */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-8">
         <Link
-          to="/blog"
+          href="/blog"
           className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm">
 
           <ArrowLeft className="w-4 h-4" />
@@ -121,7 +127,7 @@ export function BlogArticlePage() {
                   Contact Us
                 </a>
                 <Link
-                  to="/pricing"
+                  href="/pricing"
                   className="px-6 py-3 bg-[#063aa4] text-white font-bold rounded-full text-sm hover:bg-[#052e83] transition-colors">
 
                   View Pricing
@@ -136,7 +142,7 @@ export function BlogArticlePage() {
               More from {article.category}
             </h3>
             <Link
-              to="/blog"
+              href="/blog"
               className="inline-flex items-center gap-2 text-[#063aa4] hover:text-white transition-colors text-sm font-medium">
 
               View all articles →

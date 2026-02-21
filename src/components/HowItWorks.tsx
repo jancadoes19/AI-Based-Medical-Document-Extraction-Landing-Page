@@ -59,11 +59,14 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-24 bg-[#0a0a0a] text-white">
+    <section
+      id="how-it-works"
+      className="py-14 sm:py-20 md:py-24 bg-[#0a0a0a] text-white">
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-heading leading-heading">
+        <div className="mb-8 sm:mb-12 md:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 tracking-heading leading-heading">
             How It Works
           </h2>
         </div>
@@ -93,13 +96,13 @@ export function HowItWorks() {
             className="group flex flex-col">
 
               {/* Card — fixed height so all 4 are uniform */}
-              <div className="bg-[#141414] border border-white/[0.08] rounded-2xl p-6 h-[340px] flex flex-col relative overflow-hidden">
+              <div className="bg-[#141414] border border-white/[0.08] rounded-2xl p-5 sm:p-6 min-h-[280px] sm:h-[340px] flex flex-col relative overflow-hidden">
                 {/* Step Number + Title */}
-                <div className="flex items-baseline gap-2 mb-5">
-                  <span className="text-4xl md:text-5xl font-light text-white/20 tracking-tight">
+                <div className="flex items-baseline gap-2 mb-4 sm:mb-5">
+                  <span className="text-3xl sm:text-4xl md:text-5xl font-light text-white/20 tracking-tight">
                     {step.step}
                   </span>
-                  <span className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+                  <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
                     {step.title}
                   </span>
                 </div>
@@ -107,7 +110,7 @@ export function HowItWorks() {
                 {/* Visual Area — fills remaining space */}
                 <div className="flex-1 flex items-start justify-center relative overflow-hidden">
                   {index === 0 /* Ingest - Menu-like UI */ &&
-                <div className="w-full bg-[#1a1a1a] rounded-xl border border-white/[0.06] p-4 space-y-1">
+                <div className="w-full bg-[#1a1a1a] rounded-xl border border-white/[0.06] p-3 sm:p-4 space-y-1">
                       <div className="text-[10px] text-slate-500 uppercase tracking-wider mb-2 font-medium">
                         Add Document
                       </div>
@@ -130,11 +133,11 @@ export function HowItWorks() {
                   map((item, i) =>
                   <div
                     key={i}
-                    className="flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-white/[0.04] transition-colors">
+                    className="flex items-center justify-between py-2 sm:py-2.5 px-2 sm:px-3 rounded-lg hover:bg-white/[0.04] transition-colors">
 
-                          <div className="flex items-center gap-3">
-                            <item.icon className="w-4 h-4 text-slate-400" />
-                            <span className="text-sm text-slate-300">
+                          <div className="flex items-center gap-2 sm:gap-3">
+                            <item.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-400" />
+                            <span className="text-xs sm:text-sm text-slate-300">
                               {item.label}
                             </span>
                           </div>
@@ -147,10 +150,10 @@ export function HowItWorks() {
                         <div className="text-[10px] text-slate-500 uppercase tracking-wider mb-2 font-medium">
                           Source
                         </div>
-                        <div className="flex items-center justify-between py-2.5 px-3 rounded-lg">
-                          <div className="flex items-center gap-3">
-                            <Send className="w-4 h-4 text-slate-400" />
-                            <span className="text-sm text-slate-300">
+                        <div className="flex items-center justify-between py-2 sm:py-2.5 px-2 sm:px-3 rounded-lg">
+                          <div className="flex items-center gap-2 sm:gap-3">
+                            <Send className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-400" />
+                            <span className="text-xs sm:text-sm text-slate-300">
                               API Endpoint
                             </span>
                           </div>
@@ -164,7 +167,7 @@ export function HowItWorks() {
 
                   {index === 1 /* Process - AI Processing Visual */ &&
                 <div className="w-full space-y-3">
-                      <div className="bg-[#1a1a1a] rounded-xl border border-white/[0.06] p-4">
+                      <div className="bg-[#1a1a1a] rounded-xl border border-white/[0.06] p-3 sm:p-4">
                         <div className="flex items-center justify-between mb-3">
                           <span className="text-[10px] text-slate-500 uppercase tracking-wider">
                             Processing
@@ -204,7 +207,7 @@ export function HowItWorks() {
 
                   {index === 2 /* Validate - Review UI */ &&
                 <div className="w-full space-y-3">
-                      <div className="bg-[#1a1a1a] rounded-xl border border-white/[0.06] p-4">
+                      <div className="bg-[#1a1a1a] rounded-xl border border-white/[0.06] p-3 sm:p-4">
                         <div className="flex items-center gap-2 mb-3">
                           <div className="w-6 h-6 rounded-full bg-[#063aa4]/20 flex items-center justify-center">
                             <UserCheck className="w-3 h-3 text-[#063aa4]" />
@@ -255,7 +258,7 @@ export function HowItWorks() {
 
                   {index === 3 /* Deliver - Output formats */ &&
                 <div className="w-full space-y-3">
-                      <div className="bg-[#1a1a1a] rounded-xl border border-white/[0.06] p-4">
+                      <div className="bg-[#1a1a1a] rounded-xl border border-white/[0.06] p-3 sm:p-4">
                         <div className="text-[10px] text-slate-500 uppercase tracking-wider mb-3">
                           Output Formats
                         </div>
@@ -264,9 +267,9 @@ export function HowItWorks() {
                         (format, i) =>
                         <div
                           key={i}
-                          className="bg-white/[0.04] border border-white/[0.06] rounded-lg px-3 py-2 text-center">
+                          className="bg-white/[0.04] border border-white/[0.06] rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 text-center">
 
-                                <span className="text-xs text-slate-300 font-medium">
+                                <span className="text-[10px] sm:text-xs text-slate-300 font-medium">
                                   {format}
                                 </span>
                               </div>
@@ -284,7 +287,7 @@ export function HowItWorks() {
               </div>
 
               {/* Description Below Card — uniform spacing */}
-              <div className="pt-5 px-1 h-20">
+              <div className="pt-4 sm:pt-5 px-1 h-auto sm:h-20">
                 <h3 className="text-base font-bold text-white mb-1.5">
                   {step.description.split('.')[0]}.
                 </h3>

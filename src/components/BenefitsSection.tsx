@@ -164,7 +164,7 @@ export function BenefitsSection() {
   return (
     <section id="outcomes" className="bg-[#0a0a0a] text-white">
       {/* Heading row */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 md:pt-20 pb-6 sm:pb-10">
         <motion.h2
           initial={{
             opacity: 0,
@@ -206,10 +206,12 @@ export function BenefitsSection() {
             delay: i * 0.12,
             duration: 0.6
           }}
-          className={`px-10 py-14 flex flex-col items-start gap-8 ${i < 2 ? 'border-b md:border-b-0 md:border-r border-white/[0.08]' : ''}`}>
+          className={`px-6 sm:px-8 md:px-10 py-8 sm:py-10 md:py-14 flex flex-col items-start gap-6 sm:gap-8 ${i < 2 ? 'border-b md:border-b-0 md:border-r border-white/[0.08]' : ''}`}>
 
             {/* Circular icon */}
-            <div className="w-20 h-20 flex-shrink-0">{item.icon}</div>
+            <div className="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0">
+              {item.icon}
+            </div>
             <p className="text-slate-400 text-sm leading-relaxed">
               {item.caption}
             </p>

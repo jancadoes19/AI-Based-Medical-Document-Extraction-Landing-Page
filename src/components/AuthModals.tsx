@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, Component } from 'react';
+import React, { useEffect, useState, Component } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Eye, EyeOff, RefreshCw } from 'lucide-react';
 const NEW_LOGO = "/Image_20-02-26_at_14.22.png";

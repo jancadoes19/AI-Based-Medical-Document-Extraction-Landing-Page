@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, usePathname } from '../lib/compat';
 import { RegisterModal, SignInModal } from './AuthModals';
 import { CalendarModal } from './CalendarModal';
 export function Navigation() {
@@ -10,7 +10,7 @@ export function Navigation() {
   const [showCalendar, setShowCalendar] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
@@ -18,7 +18,7 @@ export function Navigation() {
   }, []);
   useEffect(() => {
     setIsMobileMenuOpen(false);
-  }, [location]);
+  }, [pathname]);
   const openRegister = () => {
     setShowRegister(true);
     setShowSignIn(false);
@@ -41,7 +41,7 @@ export function Navigation() {
           }}>
 
           {/* Logo */}
-          <Link to="/" className="flex items-center flex-shrink-0">
+          <Link href="/" className="flex items-center flex-shrink-0">
             <img
               src="/Image_20-02-26_at_14.22.png"
               alt="Immenzo"
@@ -86,7 +86,7 @@ export function Navigation() {
                 map((item) =>
                 <Link
                   key={item.to}
-                  to={item.to}
+                  href={item.to}
                   className={`block px-3.5 py-2.5 rounded-lg text-sm transition-colors ${isScrolled ? 'text-slate-400 hover:bg-white/[0.06] hover:text-white' : 'text-slate-600 hover:bg-slate-50 hover:text-[#063aa4]'}`}>
 
                       {item.label}
@@ -131,7 +131,7 @@ export function Navigation() {
                 map((item) =>
                 <Link
                   key={item.to}
-                  to={item.to}
+                  href={item.to}
                   className={`block px-3.5 py-2.5 rounded-lg text-sm transition-colors ${isScrolled ? 'text-slate-400 hover:bg-white/[0.06] hover:text-white' : 'text-slate-600 hover:bg-slate-50 hover:text-[#063aa4]'}`}>
 
                       {item.label}
@@ -164,7 +164,7 @@ export function Navigation() {
               Login
             </button>
             <Link
-              to="/pricing"
+              href="/pricing"
               className="px-4 py-1.5 text-sm font-semibold text-white bg-[#063aa4] hover:bg-[#052e83] transition-colors rounded-full shadow-sm">
 
               Get started
@@ -175,7 +175,7 @@ export function Navigation() {
 
       {/* ── Mobile Nav ── */}
       <nav className="md:hidden fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 px-4 py-3 flex justify-between items-center">
-        <Link to="/" className="flex items-center">
+        <Link href="/" className="flex items-center">
           <img
             src="/Image_20-02-26_at_14.22.png"
             alt="Immenzo"
@@ -221,7 +221,7 @@ export function Navigation() {
           map((item) =>
           <Link
             key={item.to}
-            to={item.to}
+            href={item.to}
             className="text-base font-medium text-slate-700 pl-2 py-1">
 
                 {item.label}
@@ -250,7 +250,7 @@ export function Navigation() {
           map((item) =>
           <Link
             key={item.to}
-            to={item.to}
+            href={item.to}
             className="text-base font-medium text-slate-700 pl-2 py-1">
 
                 {item.label}
@@ -282,7 +282,7 @@ export function Navigation() {
                 Login
               </button>
               <Link
-              to="/pricing"
+              href="/pricing"
               onClick={() => setIsMobileMenuOpen(false)}
               className="w-full py-3 text-center font-semibold text-white bg-[#063aa4] rounded-full">
 

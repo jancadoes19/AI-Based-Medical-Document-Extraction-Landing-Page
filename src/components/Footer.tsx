@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '../lib/compat';
 import { Linkedin, Instagram } from 'lucide-react';
 import { CookieBanner } from './CookieBanner';
 const NEW_LOGO = "/Image_20-02-26_at_14.22.png";
@@ -13,7 +13,7 @@ export function Footer() {
           {/* Column 1: Logo & Description */}
           <div className="col-span-2 md:col-span-1">
             <div className="mb-5 h-[44px] flex items-center">
-              <Link to="/" className="block">
+              <Link href="/" className="block">
                 <img src={NEW_LOGO} alt="Immenzo" className="h-11 w-auto" />
               </Link>
             </div>
@@ -30,7 +30,7 @@ export function Footer() {
             <ul className="space-y-3 text-sm text-slate-600">
               <li>
                 <Link
-                  to="/about"
+                  href="/about"
                   className="hover:text-[#063aa4] transition-colors">
 
                   About Us
@@ -38,7 +38,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  to="/manifesto"
+                  href="/manifesto"
                   className="hover:text-[#063aa4] transition-colors">
 
                   Manifesto
@@ -46,7 +46,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  to="/ai-ethics"
+                  href="/ai-ethics"
                   className="hover:text-[#063aa4] transition-colors">
 
                   AI Ethics
@@ -54,7 +54,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  to="/careers"
+                  href="/careers"
                   className="hover:text-[#063aa4] transition-colors">
 
                   Careers
@@ -79,7 +79,7 @@ export function Footer() {
             <ul className="space-y-3 text-sm text-slate-600">
               <li>
                 <Link
-                  to="/immenzo-ai"
+                  href="/immenzo-ai"
                   className="hover:text-[#063aa4] transition-colors">
 
                   Immenzo AI
@@ -87,7 +87,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  to="/use-cases"
+                  href="/use-cases"
                   className="hover:text-[#063aa4] transition-colors">
 
                   Use Cases
@@ -95,7 +95,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  to="/integrations"
+                  href="/integrations"
                   className="hover:text-[#063aa4] transition-colors">
 
                   Integrations
@@ -103,7 +103,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  to="/pricing"
+                  href="/pricing"
                   className="hover:text-[#063aa4] transition-colors">
 
                   Pricing & FAQ
@@ -120,7 +120,7 @@ export function Footer() {
             <ul className="space-y-3 text-sm text-slate-600">
               <li>
                 <Link
-                  to="/portal?redirect=/immenzo-ai"
+                  href="/portal?redirect=/immenzo-ai"
                   className="hover:text-[#063aa4] transition-colors">
 
                   Documentation
@@ -131,7 +131,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  to="/portal?redirect=/immenzo-ai"
+                  href="/portal?redirect=/immenzo-ai"
                   className="hover:text-[#063aa4] transition-colors">
 
                   Demo
@@ -142,7 +142,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  to="/blog"
+                  href="/blog"
                   className="hover:text-[#063aa4] transition-colors">
 
                   Blog
@@ -200,7 +200,7 @@ export function Footer() {
             <ul className="space-y-3 text-sm text-slate-600">
               <li>
                 <Link
-                  to="/legal"
+                  href="/legal"
                   className="hover:text-[#063aa4] transition-colors">
 
                   Sub-Processors
@@ -208,7 +208,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  to="/legal"
+                  href="/legal"
                   className="hover:text-[#063aa4] transition-colors">
 
                   Privacy Policy
@@ -216,7 +216,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  to="/legal"
+                  href="/legal"
                   className="hover:text-[#063aa4] transition-colors">
 
                   Cookie Policy
@@ -224,7 +224,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  to="/legal"
+                  href="/legal"
                   className="hover:text-[#063aa4] transition-colors">
 
                   Terms of Service
@@ -232,7 +232,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  to="/security"
+                  href="/security"
                   className="hover:text-[#063aa4] transition-colors">
 
                   Security

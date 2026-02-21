@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link } from '../lib/compat';
 const scenarios = [
 {
   icon:
@@ -264,7 +264,7 @@ export function AboutPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-[#063aa4] selection:text-white">
       {/* Hero */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-20 border-b border-white/[0.06]">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 md:pt-36 pb-12 sm:pb-16 md:pb-20 border-b border-white/[0.06]">
         <motion.div
           initial={{
             opacity: 0,
@@ -278,8 +278,8 @@ export function AboutPage() {
             duration: 0.6
           }}>
 
-          <div className="section-label mb-5">About Us</div>
-          <h1 className="page-hero-title mb-8">
+          <div className="section-label mb-4 sm:mb-5">About Us</div>
+          <h1 className="page-hero-title mb-6 sm:mb-8">
             Behind Every Document Is a{' '}
             <span className="text-slate-400 font-normal">
               Decision That Matters
@@ -288,7 +288,7 @@ export function AboutPage() {
         </motion.div>
 
         {/* 4 scenario cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border border-white/[0.08] rounded-2xl overflow-hidden mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-0 border border-white/[0.08] rounded-2xl overflow-hidden mb-12 sm:mb-16">
           {scenarios.map((s, i) =>
           <motion.div
             key={i}
@@ -304,9 +304,11 @@ export function AboutPage() {
               delay: i * 0.1,
               duration: 0.5
             }}
-            className={`p-8 flex flex-col items-center text-center gap-5 text-slate-400 ${i < 3 ? 'border-r border-white/[0.08]' : ''}`}>
+            className={`p-6 sm:p-8 flex flex-col items-center text-center gap-4 sm:gap-5 text-slate-400 border-b sm:border-b-0 border-white/[0.08] last:border-b-0 ${i % 2 === 0 ? 'sm:border-r' : ''} ${i < 2 ? 'md:border-b-0' : ''} ${i < 3 ? 'md:border-r' : ''}`}>
 
-              <div className="text-slate-500">{s.icon}</div>
+              <div className="text-slate-500 transform scale-75 sm:scale-100">
+                {s.icon}
+              </div>
               <p className="text-xs text-slate-400 leading-relaxed font-medium">
                 {s.label}
               </p>
@@ -315,11 +317,11 @@ export function AboutPage() {
         </div>
 
         {/* Problem / solution */}
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="text-slate-500">
+        <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
+          <div className="text-slate-500 hidden sm:block">
             <svg
               viewBox="0 0 200 160"
-              className="w-full max-w-xs opacity-50"
+              className="w-full max-w-xs opacity-50 mx-auto md:mx-0"
               fill="none"
               stroke="currentColor"
               strokeWidth="1">
@@ -335,14 +337,14 @@ export function AboutPage() {
 
             </svg>
           </div>
-          <div className="space-y-5">
-            <p className="text-slate-300 text-base leading-relaxed">
+          <div className="space-y-4 sm:space-y-5">
+            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
               Organizations run on documents. But for too long, they've relied
               on outdated technology and manual processes to handle them,
               driving up costs, slowing down decisions, and frustrating the
               people who depend on them.
             </p>
-            <p className="text-white text-base leading-relaxed font-medium">
+            <p className="text-white text-sm sm:text-base leading-relaxed font-medium">
               Immenzo flips the script. Our AI platform reads, understands, and
               processes documents at scale, automatically, so your team gets
               back to what actually matters: serving people.
@@ -352,7 +354,7 @@ export function AboutPage() {
       </div>
 
       {/* Innovation / Stats */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-b border-white/[0.06]">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 border-b border-white/[0.06]">
         <motion.div
           initial={{
             opacity: 0,
@@ -372,11 +374,11 @@ export function AboutPage() {
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
             Innovation Is in Our DNA
           </h2>
-          <p className="text-slate-400 text-base mb-14 max-w-xl">
+          <p className="text-slate-400 text-sm sm:text-base mb-10 sm:mb-14 max-w-xl">
             Delivering results is our mission, whether it's transforming a
             single department or scaling across an entire enterprise.
           </p>
-          <div className="grid grid-cols-3 gap-0 border-t border-white/[0.08]">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 border-t border-white/[0.08]">
             {stats.map((s, i) =>
             <motion.div
               key={i}
@@ -395,9 +397,9 @@ export function AboutPage() {
                 delay: i * 0.1,
                 duration: 0.5
               }}
-              className={`pt-8 pb-4 ${i < 2 ? 'border-r border-white/[0.08] pr-8 mr-8' : ''}`}>
+              className={`pt-6 sm:pt-8 pb-6 sm:pb-4 border-b sm:border-b-0 border-white/[0.08] last:border-b-0 ${i < 2 ? 'sm:border-r sm:pr-8 sm:mr-8' : ''}`}>
 
-                <div className="text-5xl md:text-6xl font-bold text-[#063aa4] mb-2 tracking-tight">
+                <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#063aa4] mb-2 tracking-tight">
                   {s.value}
                 </div>
                 <div className="text-slate-400 text-sm">{s.label}</div>
@@ -408,8 +410,8 @@ export function AboutPage() {
       </div>
 
       {/* Meet the Team */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-b border-white/[0.06]">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 tracking-tight">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 border-b border-white/[0.06]">
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 sm:mb-12 tracking-tight">
           Meet the Team
         </h2>
         <div className="grid md:grid-cols-3 gap-5">
@@ -435,8 +437,8 @@ export function AboutPage() {
             className="bg-[#111111] border border-white/[0.07] rounded-2xl overflow-hidden">
 
               {/* Avatar area */}
-              <div className="bg-[#063aa4]/20 border-b border-white/[0.06] p-8 flex items-end gap-4">
-                <div className="w-16 h-16 rounded-xl bg-[#063aa4] flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+              <div className="bg-[#063aa4]/20 border-b border-white/[0.06] p-6 sm:p-8 flex items-end gap-4">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl bg-[#063aa4] flex items-center justify-center text-white font-bold text-lg sm:text-xl flex-shrink-0">
                   {member.initials}
                 </div>
                 <div>
@@ -448,7 +450,7 @@ export function AboutPage() {
                   </div>
                 </div>
               </div>
-              <div className="p-6">
+              <div className="p-5 sm:p-6">
                 <p className="text-slate-400 text-sm leading-relaxed mb-4">
                   {member.bio}
                 </p>
@@ -475,8 +477,8 @@ export function AboutPage() {
       </div>
 
       {/* What We're Built On */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-b border-white/[0.06]">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-10 tracking-tight">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 border-b border-white/[0.06]">
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 sm:mb-10 tracking-tight">
           What We're Built On
         </h2>
         <div className="grid md:grid-cols-3 gap-4">
@@ -498,10 +500,10 @@ export function AboutPage() {
               delay: i * 0.1,
               duration: 0.5
             }}
-            className="bg-[#111111] border border-white/[0.07] rounded-2xl p-7">
+            className="bg-[#111111] border border-white/[0.07] rounded-2xl p-6 sm:p-7">
 
-              <div className="w-8 h-0.5 bg-[#063aa4] mb-5" />
-              <h3 className="text-[#063aa4] font-bold text-lg leading-tight">
+              <div className="w-8 h-0.5 bg-[#063aa4] mb-4 sm:mb-5" />
+              <h3 className="text-[#063aa4] font-bold text-lg leading-tight mb-2">
                 {p.title}
               </h3>
               <p className="text-slate-400 text-sm leading-relaxed">{p.body}</p>
@@ -511,8 +513,8 @@ export function AboutPage() {
       </div>
 
       {/* Our Values */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 tracking-tight">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 sm:mb-12 tracking-tight">
           Our Values
         </h2>
         <div className="space-y-0">
@@ -535,7 +537,7 @@ export function AboutPage() {
               delay: 0.05,
               duration: 0.6
             }}
-            className="grid md:grid-cols-[200px_160px_1fr] gap-8 items-center py-10 border-b border-white/[0.06] last:border-0">
+            className="grid md:grid-cols-[200px_160px_1fr] gap-4 sm:gap-8 items-start md:items-center py-8 sm:py-10 border-b border-white/[0.06] last:border-0">
 
               <h3 className="text-[#063aa4] font-bold text-lg leading-tight">
                 {v.title}
@@ -550,20 +552,20 @@ export function AboutPage() {
       </div>
 
       {/* Closing tagline */}
-      <div className="border-t border-white/[0.06] py-16 text-center">
+      <div className="border-t border-white/[0.06] py-12 sm:py-16 text-center px-4">
         <p className="text-slate-500 text-sm italic">
           Immenzo — turning document chaos into decisions that move.
         </p>
-        <div className="flex items-center justify-center gap-4 mt-8">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-6 sm:mt-8">
           <Link
-            to="/pricing"
-            className="px-6 py-2.5 bg-white text-black font-bold rounded-full text-sm hover:bg-slate-100 transition-colors border border-slate-200">
+            href="/pricing"
+            className="w-full sm:w-auto px-6 py-2.5 bg-white text-black font-bold rounded-full text-sm hover:bg-slate-100 transition-colors border border-slate-200">
 
             Get started
           </Link>
           <Link
-            to="/manifesto"
-            className="px-6 py-2.5 bg-[#063aa4] text-white font-bold rounded-full text-sm hover:bg-[#052e83] transition-colors">
+            href="/manifesto"
+            className="w-full sm:w-auto px-6 py-2.5 bg-[#063aa4] text-white font-bold rounded-full text-sm hover:bg-[#052e83] transition-colors">
 
             Read our Manifesto
           </Link>

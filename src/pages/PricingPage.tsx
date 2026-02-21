@@ -12,14 +12,14 @@ import { motion } from 'framer-motion';
 import { CalendarModal } from '../components/CalendarModal';
 import { TrustBadges } from '../components/TrustBadges';
 import { CertificationBanner } from '../components/CertificationBanner';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from '../lib/compat';
 export function PricingPage() {
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>(
     'monthly'
   );
   const [showCalendar, setShowCalendar] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const navigate = useNavigate();
+  const router = useRouter();
   const faqs = [
   {
     q: 'Is our data secure, and who can access it?',
@@ -163,7 +163,7 @@ export function PricingPage() {
               )}
             </ul>
             <button
-              onClick={() => navigate('/checkout?plan=basic')}
+              onClick={() => router.push('/checkout?plan=basic')}
               className="w-full py-3 rounded-xl bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-colors text-sm">
 
               Buy now
@@ -226,7 +226,7 @@ export function PricingPage() {
               )}
             </ul>
             <button
-              onClick={() => navigate('/checkout?plan=professional')}
+              onClick={() => router.push('/checkout?plan=professional')}
               className="w-full py-3 rounded-xl bg-[#063aa4] text-white font-bold hover:bg-[#052e83] transition-colors shadow-lg shadow-[#063aa4]/20 text-sm">
 
               Buy now
@@ -282,7 +282,7 @@ export function PricingPage() {
               )}
             </ul>
             <button
-              onClick={() => navigate('/checkout?plan=enterprise')}
+              onClick={() => router.push('/checkout?plan=enterprise')}
               className="w-full py-3 rounded-xl bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-colors text-sm">
 
               Buy now

@@ -1,66 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+/* @import url() FONT IMPORTS MUST ALWAYS BE AT THE VERY TOP OF THIS FILE, ABOVE THE TAILWIND IMPORTS — DO NOT DELETE THIS COMMENT */
 
-/* URL IMPORTS (SUCH AS FONT IMPORTS) SHOULD BE KEPT ABOVE TAILWIND IMPORTS - DO NOT DELETE THIS COMMENT */
-
-/* PLEASE NOTE: THESE TAILWIND IMPORTS SHOULD NEVER BE DELETED - DO NOT DELETE THIS COMMENT */
+/* CRITICAL: THE FOLLOWING TAILWIND IMPORTS MUST NEVER BE DELETED OR REORDERED — DO NOT DELETE THIS COMMENT */
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
-
-/* DO NOT DELETE THESE TAILWIND IMPORTS, OTHERWISE THE STYLING WILL NOT RENDER AT ALL - DO NOT DELETE THIS COMMENT */
-
-:root {
-  --color-primary: #063aa4;
-}
-/* Global Inter font with consistent letter-spacing and line-height */
-*, *::before, *::after {
-  font-family: 'Inter', sans-serif;
-}
-body {
-  font-family: 'Inter', sans-serif;
-  letter-spacing: -0.058em;
-  line-height: 0.89;
-}
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Inter', sans-serif;
-  letter-spacing: -0.058em;
-  line-height: 0.89;
-}
-p, span, a, li, td, th, button, input, textarea, label, div {
-  letter-spacing: -0.058em;
-}
-/* Paragraphs and body text need readable line-height */
-p, li, td, th {
-  line-height: 1.6;
-}
-@layer utilities {
-  .text-gradient-primary {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#063aa4] to-[#063aa4];
-  }
-}
-@layer components {
-  /* ── Standard page hero header ── */
-  .page-hero {
-    @apply pt-36 pb-16 border-b border-white/[0.06];
-  }
-  .page-hero-inner {
-    @apply max-w-5xl mx-auto px-4 sm:px-6 lg:px-8;
-  }
-  .page-hero-title {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-[-0.058em] leading-[0.89];
-  }
-  .page-hero-subtitle {
-    @apply text-lg text-slate-400 leading-relaxed mt-5 max-w-2xl;
-  }
-  /* ── Standard page section ── */
-  .page-section {
-    @apply py-20;
-  }
-  .page-section-inner {
-    @apply max-w-5xl mx-auto px-4 sm:px-6 lg:px-8;
-  }
-  /* ── Section label (e.g. "Healthcare", "Open Roles") ── */
-  .section-label {
-    @apply text-xs font-bold text-slate-500 uppercase tracking-widest mb-6;
-  }
-}
+/* END TAILWIND IMPORTS — ALL OTHER CSS MUST GO BELOW THIS LINE */

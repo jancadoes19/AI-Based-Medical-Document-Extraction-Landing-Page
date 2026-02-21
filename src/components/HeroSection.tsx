@@ -4,14 +4,14 @@ import { motion } from 'framer-motion';
 import { FileText, ScanLine, Code } from 'lucide-react';
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen bg-[#0a0a0a] overflow-hidden flex flex-col justify-center pt-32 pb-24">
+    <section className="relative min-h-screen bg-[#0a0a0a] overflow-hidden flex flex-col justify-center pt-24 sm:pt-32 pb-16 sm:pb-24">
       {/* Background Grid */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none"></div>
 
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="grid lg:grid-cols-12 gap-8 items-center">
-          {/* LEFT COLUMN: Inputs */}
-          <div className="lg:col-span-3 flex flex-col gap-12 relative">
+          {/* LEFT COLUMN: Inputs - Hidden on mobile/tablet */}
+          <div className="hidden lg:flex lg:col-span-3 flex-col gap-12 relative">
             {/* Card 1 */}
             <motion.div
               initial={{
@@ -124,8 +124,8 @@ export function HeroSection() {
             </svg>
           </div>
 
-          {/* CENTER COLUMN: Main Content */}
-          <div className="lg:col-span-6 text-center relative z-20">
+          {/* CENTER COLUMN: Main Content - Full width on mobile */}
+          <div className="col-span-full lg:col-span-6 text-center relative z-20">
             <motion.div
               initial={{
                 opacity: 0,
@@ -140,20 +140,20 @@ export function HeroSection() {
                 delay: 0.3
               }}>
 
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-heading leading-heading text-white mb-8">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-heading leading-heading text-white mb-6 sm:mb-8">
                 Turn Documents <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#063aa4] to-[#60a5fa]">
                   Into Data
                 </span>
               </h1>
 
-              <p className="text-lg text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed font-light">
+              <p className="text-base sm:text-lg text-slate-400 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed font-light px-4 sm:px-0">
                 Immenzo automates document processing for healthcare and
                 education institutions in Indonesia. From patient forms to
                 student records—structured, verified, integrated.
               </p>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 px-4 sm:px-0">
                 <button className="w-full sm:w-auto px-8 py-4 text-base font-bold text-black bg-white rounded-full hover:bg-slate-100 transition-colors shadow-sm">
                   Talk to Experts
                 </button>
@@ -164,8 +164,8 @@ export function HeroSection() {
             </motion.div>
           </div>
 
-          {/* RIGHT COLUMN: Output */}
-          <div className="lg:col-span-3 relative flex justify-end">
+          {/* RIGHT COLUMN: Output - Hidden on mobile/tablet */}
+          <div className="hidden lg:flex lg:col-span-3 relative justify-end">
             {/* SVG Connecting Lines (Center to Right) */}
             <svg
               className="absolute top-0 right-full w-full h-full pointer-events-none overflow-visible hidden lg:block"

@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import React, { useState, Suspense } from 'react';
+import { useRouter, useSearchParams } from '../lib/compat';
 import { motion } from 'framer-motion';
 import { Eye, EyeOff, ArrowRight } from 'lucide-react';
 import { usePortalAuth } from '../hooks/usePortalAuth';
 const LOGO = "/Image_20-02-26_at_14.22.png";
 
-export function PortalLoginPage() {
-  const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
+function LoginForm() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const { login } = usePortalAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -38,12 +38,125 @@ export function PortalLoginPage() {
     await new Promise((r) => setTimeout(r, 700));
     const success = login(email, password);
     if (success) {
-      navigate(redirectTo);
+      router.push(redirectTo);
     } else {
       setAuthError('Invalid credentials. Please check your email and password.');
       setLoading(false);
     }
   };
+  return (
+    <motion.div
+      initial={{
+        opacity: 0,
+        y: 20
+      }}
+      animate={{
+        opacity: 1,
+        y: 0
+      }}
+      transition={{
+        duration: 0.5
+      }}
+      className="relative z-10 w-full max-w-sm bg-white rounded-2xl shadow-2xl shadow-black/40 p-8">
+
+      <h1 className="text-xl font-bold text-slate-900 mb-1">
+        Immenzo Client Portal
+      </h1>
+      <p className="text-slate-500 text-sm mb-7">
+        Sign in to access exclusive product content.
+      </p>
+
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block text-slate-700 text-xs font-bold mb-1.5 uppercase tracking-wider">
+            Email
+          </label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setEmailError('');
+              setAuthError('');
+            }}
+            placeholder="nama@company.com"
+            autoComplete="email"
+            className={`w-full border rounded-xl py-3 px-4 text-slate-900 placeholder:text-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#063aa4]/20 focus:border-[#063aa4] transition-all ${emailError ? 'border-red-400' : 'border-slate-200'}`} />
+
+          {emailError &&
+          <p className="text-red-500 text-xs mt-1">{emailError}</p>
+          }
+        </div>
+
+        <div>
+          <label className="block text-slate-700 text-xs font-bold mb-1.5 uppercase tracking-wider">
+            Password
+          </label>
+          <div className="relative">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setPasswordError('');
+                setAuthError('');
+              }}
+              placeholder="Your password"
+              autoComplete="current-password"
+              className={`w-full border rounded-xl py-3 px-4 pr-10 text-slate-900 placeholder:text-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#063aa4]/20 focus:border-[#063aa4] transition-all ${passwordError ? 'border-red-400' : 'border-slate-200'}`} />
+
+            <button
+              type="button"
+              onClick={() => setShowPassword((p) => !p)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+
+              {showPassword ?
+              <EyeOff className="w-4 h-4" /> :
+
+              <Eye className="w-4 h-4" />
+              }
+            </button>
+          </div>
+          {passwordError &&
+          <p className="text-red-500 text-xs mt-1">{passwordError}</p>
+          }
+        </div>
+
+        {authError &&
+        <p className="text-red-500 text-xs bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+            {authError}
+          </p>
+        }
+
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full py-3 bg-[#063aa4] text-white font-bold rounded-xl hover:bg-[#052e83] transition-colors shadow-lg shadow-[#063aa4]/20 flex items-center justify-center gap-2 disabled:opacity-60 text-sm mt-2">
+
+          {loading ?
+          <span className="animate-pulse">Signing in…</span> :
+
+          <>
+              {' '}
+              Sign In <ArrowRight className="w-4 h-4" />
+            </>
+          }
+        </button>
+      </form>
+
+      <p className="text-slate-400 text-xs text-center mt-6">
+        Don't have access?{' '}
+        <a
+          href="mailto:support@immenzo.com"
+          className="text-[#063aa4] font-medium hover:underline">
+
+          Contact us
+        </a>
+      </p>
+    </motion.div>);
+
+}
+export function PortalLoginPage() {
   return (
     <div
       className="min-h-screen flex flex-col"
@@ -95,116 +208,10 @@ export function PortalLoginPage() {
 
         </div>
 
-        {/* Login card */}
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 20
-          }}
-          animate={{
-            opacity: 1,
-            y: 0
-          }}
-          transition={{
-            duration: 0.5
-          }}
-          className="relative z-10 w-full max-w-sm bg-white rounded-2xl shadow-2xl shadow-black/40 p-8">
-
-          <h1 className="text-xl font-bold text-slate-900 mb-1">
-            Immenzo Client Portal
-          </h1>
-          <p className="text-slate-500 text-sm mb-7">
-            Sign in to access exclusive product content.
-          </p>
-
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="block text-slate-700 text-xs font-bold mb-1.5 uppercase tracking-wider">
-                Email
-              </label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  setEmailError('');
-                  setAuthError('');
-                }}
-                placeholder="nama@company.com"
-                autoComplete="email"
-                className={`w-full border rounded-xl py-3 px-4 text-slate-900 placeholder:text-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#063aa4]/20 focus:border-[#063aa4] transition-all ${emailError ? 'border-red-400' : 'border-slate-200'}`} />
-
-              {emailError &&
-              <p className="text-red-500 text-xs mt-1">{emailError}</p>
-              }
-            </div>
-
-            <div>
-              <label className="block text-slate-700 text-xs font-bold mb-1.5 uppercase tracking-wider">
-                Password
-              </label>
-              <div className="relative">
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                    setPasswordError('');
-                    setAuthError('');
-                  }}
-                  placeholder="Your password"
-                  autoComplete="current-password"
-                  className={`w-full border rounded-xl py-3 px-4 pr-10 text-slate-900 placeholder:text-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#063aa4]/20 focus:border-[#063aa4] transition-all ${passwordError ? 'border-red-400' : 'border-slate-200'}`} />
-
-                <button
-                  type="button"
-                  onClick={() => setShowPassword((p) => !p)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
-
-                  {showPassword ?
-                  <EyeOff className="w-4 h-4" /> :
-
-                  <Eye className="w-4 h-4" />
-                  }
-                </button>
-              </div>
-              {passwordError &&
-              <p className="text-red-500 text-xs mt-1">{passwordError}</p>
-              }
-            </div>
-
-            {authError &&
-            <p className="text-red-500 text-xs bg-red-50 border border-red-200 rounded-lg px-3 py-2">
-                {authError}
-              </p>
-            }
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full py-3 bg-[#063aa4] text-white font-bold rounded-xl hover:bg-[#052e83] transition-colors shadow-lg shadow-[#063aa4]/20 flex items-center justify-center gap-2 disabled:opacity-60 text-sm mt-2">
-
-              {loading ?
-              <span className="animate-pulse">Signing in…</span> :
-
-              <>
-                  {' '}
-                  Sign In <ArrowRight className="w-4 h-4" />
-                </>
-              }
-            </button>
-          </form>
-
-          <p className="text-slate-400 text-xs text-center mt-6">
-            Don't have access?{' '}
-            <a
-              href="mailto:support@immenzo.com"
-              className="text-[#063aa4] font-medium hover:underline">
-
-              Contact us
-            </a>
-          </p>
-        </motion.div>
+        {/* Login card wrapped in Suspense for useSearchParams */}
+        <Suspense fallback={<div className="text-white">Loading...</div>}>
+          <LoginForm />
+        </Suspense>
       </div>
 
       {/* Footer */}
